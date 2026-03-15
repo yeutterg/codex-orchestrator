@@ -22,6 +22,9 @@ flowchart TD
         D["Shared Docs<br/>plan.md<br/>runs.md"]
         O[Orchestrator]
         X[" "]
+
+        D --- O
+        O --- X
     end
 
     subgraph Servers[" "]
