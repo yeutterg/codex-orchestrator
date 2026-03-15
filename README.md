@@ -55,6 +55,7 @@ The user talks only to the orchestrator.
 
 ## Limitations
 
+- This pattern currently only works with Codex, because it depends on Codex App Server behavior and Codex skill execution.
 - This pattern is designed around App Server. Sharing a Codex session as an MCP server does not expose enough useful information to the orchestrator for this workflow.
 - After you run `codex app-server` in each child repo, that terminal mostly just hosts the server process. It does not give you a useful live view of the child run.
 - In practice, execution visibility lives in the orchestrator session and in `runs.md`, not in the child App Server terminals.
