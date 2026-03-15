@@ -17,16 +17,13 @@ This repo is designed to work with the App Server functionality in Codex.
 
 ```mermaid
 flowchart TD
-    U[User]
+    U[User] --> O[Orchestrator]
 
-    subgraph Header[" "]
+    subgraph Docs["Shared Docs"]
         direction LR
-        subgraph Docs["Shared Docs"]
-            direction TB
-            P[plan.md]
-            R[runs.md]
-        end
-        O[Orchestrator]
+        P[plan.md]
+        R[runs.md]
+        DX[" "]
     end
 
     subgraph Servers[" "]
@@ -43,7 +40,10 @@ flowchart TD
         RC[Child Repo C]
     end
 
-    U --> O
+    classDef invisible fill:transparent,stroke:transparent,color:transparent
+    class DX invisible
+
+    DX ~~~ O
     P <--> O
     R <--> O
     O <--> A
@@ -55,6 +55,14 @@ flowchart TD
 ```
 
 The user talks only to the orchestrator.
+
+## Benefits
+
+- One place for the user to interact, instead of coordinating multiple child sessions manually.
+- Better for multi-repo changes because the orchestrator can understand dependencies and plan across repos before execution.
+- More durable than chat-only workflows because `plan.md` and `runs.md` survive compacting and restarts.
+- Easier to manage human checkpoints because testing, approvals, and clarification all route through the orchestrator.
+- Keeps each repo in its own real working context instead of forcing everything into one repo or one flattened session.
 
 ## Limitations
 
