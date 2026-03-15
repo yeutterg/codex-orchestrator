@@ -18,13 +18,13 @@ This repo is designed to work with the App Server functionality in Codex.
 ```mermaid
 flowchart TD
     U[User] --> O[Orchestrator]
-    O --> P[plan.md]
-    O --> R[runs.md]
+    P[plan.md] <--> O
+    R[runs.md] <--> O
     O <--> A[Child App Server A]
-    O <--> B[Child App Server B]
-    O <--> C[Child App Server C]
     A --> RA[Child Repo A]
+    O <--> B[Child App Server B]
     B --> RB[Child Repo B]
+    O <--> C[Child App Server C]
     C --> RC[Child Repo C]
 ```
 
