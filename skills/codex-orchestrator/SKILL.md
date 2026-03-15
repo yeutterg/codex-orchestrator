@@ -7,7 +7,7 @@ description: Coordinate multiple child repos through Codex App Server-connected 
 
 ## Overview
 
-Run one OpenAI Codex session as the orchestrator and treat all child repos as delegated execution contexts. Keep the user talking only to the orchestrator, prefer App Server discovery or explicit endpoint configuration for child capabilities, and maintain enough shared documentation that the orchestration can survive session restarts. A common example is coordinating frontend, backend, and microcontroller firmware repos, but do not assume fixed child roles unless the user explicitly defines them.
+Run one OpenAI Codex session as the orchestrator and treat all child repos as delegated execution contexts. Keep the user talking only to the orchestrator, prefer App Server discovery or explicit endpoint configuration for child capabilities, and maintain enough shared documentation that the orchestration can survive session restarts. A common example is coordinating work or debugging issues that span frontend, backend, edge, or microcontroller firmware repos, but do not assume fixed child roles unless the user explicitly defines them.
 This skill is designed to work with the App Server functionality in Codex.
 The required order is: connect to child App Servers, deeply understand each repo, understand how the repos work together, write the plan, and only then execute.
 Prefer a single kickoff prompt that includes the problem statement and the pasted child repo working directories. After that, proceed mostly autonomously and ask the user for more input only when a step genuinely depends on human action or judgment.

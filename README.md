@@ -2,7 +2,7 @@
 
 Coordinate work across multiple repos from one OpenAI Codex session.
 
-A common example is `frontend`, `backend`, and `microcontroller firmware`, but this works for any set of repos that need to move together.
+A common example is coordinating work or debugging issues that span `frontend`, `backend`, `edge`, or `microcontroller firmware`, but this works for any set of repos that need to move together.
 
 The workflow is:
 - each child repo runs its own `codex app-server`
