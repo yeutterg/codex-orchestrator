@@ -17,15 +17,7 @@ This repo is designed to work with the App Server functionality in Codex.
 
 ```mermaid
 flowchart TD
-    subgraph Top[" "]
-        direction LR
-        D["Shared Docs<br/>plan.md<br/>runs.md"]
-        O[Orchestrator]
-        X[" "]
-
-        D --- O
-        O --- X
-    end
+    O["Orchestrator<br/>plan.md<br/>runs.md"]
 
     subgraph Servers[" "]
         direction LR
@@ -42,10 +34,7 @@ flowchart TD
     end
 
     classDef invisible fill:transparent,stroke:transparent,color:transparent
-    class Top,Servers,Repos invisible
-    class X invisible
-
-    D <--> O
+    class Servers,Repos invisible
     O <--> A
     O <--> B
     O <--> C
