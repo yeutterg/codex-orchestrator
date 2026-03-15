@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Orchestrator"
+  short_description: "Coordinate multi-repo Codex child agents"
+  default_prompt: "Use $codex-orchestrator to coordinate multiple child repos through Codex App Server child agents with a shared plan and run log."

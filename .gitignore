@@ -1,0 +1,6 @@
+.orchestrator/
+__pycache__/
+.codex-generated/
+plan.md
+runs.md
+orchestrator.config.yaml
