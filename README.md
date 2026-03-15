@@ -19,9 +19,9 @@ This repo is designed to work with the App Server functionality in Codex.
 flowchart TD
     U[User]
 
-    subgraph Core[" "]
+    subgraph Header[" "]
         direction LR
-        subgraph Docs[" "]
+        subgraph Docs["Shared Docs"]
             direction TB
             P[plan.md]
             R[runs.md]
@@ -29,15 +29,29 @@ flowchart TD
         O[Orchestrator]
     end
 
+    subgraph Servers[" "]
+        direction LR
+        A[Child App Server A]
+        B[Child App Server B]
+        C[Child App Server C]
+    end
+
+    subgraph Repos[" "]
+        direction LR
+        RA[Child Repo A]
+        RB[Child Repo B]
+        RC[Child Repo C]
+    end
+
     U --> O
     P <--> O
     R <--> O
-    O <--> A[Child App Server A]
-    A --> RA[Child Repo A]
-    O <--> B[Child App Server B]
-    B --> RB[Child Repo B]
-    O <--> C[Child App Server C]
-    C --> RC[Child Repo C]
+    O <--> A
+    O <--> B
+    O <--> C
+    A --> RA
+    B --> RB
+    C --> RC
 ```
 
 The user talks only to the orchestrator.
