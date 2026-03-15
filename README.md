@@ -1,8 +1,14 @@
 # Codex Orchestrator
 
-Coordinate work across multiple repos from one OpenAI Codex session.
+Coordinate cross-repo collaboration from one OpenAI Codex session.
 
-A common example is coordinating work or debugging issues that span `frontend`, `backend`, `edge`, or `microcontroller firmware`, but this works for any set of repos that need to move together.
+This is for work that spans separate repos and needs one orchestrator session to understand dependencies, plan the work, and coordinate execution across them.
+
+Typical cross-repo examples:
+- `backend` + device firmware + mobile app
+- `backend` + `frontend` + `edge`
+
+In other words, this is not just "run Codex in one repo." It is for systems where multiple repos need to move together.
 
 The workflow is:
 - each child repo runs its own `codex app-server`
@@ -132,6 +138,17 @@ Best case, you give the orchestrator everything it needs in one kickoff prompt:
 - the pasted absolute working directory for each child repo
 - any optional logging, instrumentation, or pre-execution test requests
 
+Example kickoff prompt:
+
+```text
+Use $codex-orchestrator.
+The problem is: <describe the problem>.
+The child repo directories are:
+- child-1=<paste pwd>
+- child-2=<paste pwd>
+- child-3=<paste pwd>
+```
+
 From there, it should proceed mostly autonomously. It should only ask you for more input when a step genuinely requires human action or human judgment.
 
 ### 3. What Happens Next
@@ -147,20 +164,11 @@ If the user asked for extra logging, instrumentation, or test runs, the orchestr
 
 If a child needs testing, approval, credentials, or clarification, the orchestrator should stop there and ask the user with exact steps and the exact result it needs back.
 
-Example kickoff prompt:
+## End-To-End Examples
 
-```text
-Use $codex-orchestrator.
-The problem is: <describe the problem>.
-The child repo directories are:
-- child-1=<paste pwd>
-- child-2=<paste pwd>
-- child-3=<paste pwd>
-```
+### Example 1: Backend, Device, And Mobile App
 
-## End-To-End Example
-
-Example: `frontend`, `backend`, and microcontroller firmware all need coordinated work for a new device onboarding flow.
+Example: `backend`, device firmware, and a mobile app repo all need coordinated work for a new device onboarding flow.
 
 1. Start each child repo like this and copy each repo path with `pwd`:
 
@@ -191,15 +199,33 @@ Example prompt:
 
 ```text
 Use $codex-orchestrator.
-The problem is: when the app tries to connect a new device, the frontend
+The problem is: when the mobile app tries to connect a new device, it
 shows "Connecting..." for about 30 seconds and then fails with
 "device registration timed out", even though the backend eventually creates
 the device record and the microcontroller firmware appears online a few
 seconds later.
 The child repo directories are:
-- frontend=<paste pwd from child-repo-0>
+- mobile=<paste pwd from child-repo-0>
 - backend=<paste pwd from child-repo-1>
 - firmware=<paste pwd from child-repo-2>
+```
+
+### Example 2: Backend, Frontend, And Edge
+
+Example: `backend`, `frontend`, and `edge` all need coordinated work for a request flow that crosses browser UI, API behavior, and edge execution.
+
+Example prompt:
+
+```text
+Use $codex-orchestrator.
+The problem is: users can submit a checkout form in the frontend, but the
+edge function intermittently drops the session header before the request
+reaches the backend, so the UI shows a generic 500 error instead of the
+expected validation response.
+The child repo directories are:
+- frontend=<paste pwd from child-repo-0>
+- backend=<paste pwd from child-repo-1>
+- edge=<paste pwd from child-repo-2>
 ```
 
 ## Files
