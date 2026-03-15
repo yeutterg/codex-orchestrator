@@ -16,15 +16,13 @@ This repo is designed to work with the App Server functionality in Codex.
 ## Model
 
 ```mermaid
-flowchart LR
+flowchart TD
     U[User] --> O[Orchestrator]
     O --> P[plan.md]
     O --> R[runs.md]
-
     O <--> A[Child App Server A]
     O <--> B[Child App Server B]
     O <--> C[Child App Server C]
-
     A --> RA[Child Repo A]
     B --> RB[Child Repo B]
     C --> RC[Child Repo C]
@@ -128,7 +126,12 @@ If a child needs testing, approval, credentials, or clarification, the orchestra
 Example kickoff prompt:
 
 ```text
-Use $codex-orchestrator. The problem is: <describe the problem>. The child repo directories are: child-1=<paste pwd>, child-2=<paste pwd>, child-3=<paste pwd>.
+Use $codex-orchestrator.
+The problem is: <describe the problem>.
+The child repo directories are:
+- child-1=<paste pwd>
+- child-2=<paste pwd>
+- child-3=<paste pwd>
 ```
 
 ## End-To-End Example
@@ -163,7 +166,16 @@ codex app-server
 Example prompt:
 
 ```text
-Use $codex-orchestrator. The problem is: when the app tries to connect a new device, the frontend shows "Connecting..." for about 30 seconds and then fails with "device registration timed out", even though the backend eventually creates the device record and the microcontroller firmware appears online a few seconds later. The child repo directories are: frontend=<paste pwd from child-repo-0>, backend=<paste pwd from child-repo-1>, firmware=<paste pwd from child-repo-2>.
+Use $codex-orchestrator.
+The problem is: when the app tries to connect a new device, the frontend
+shows "Connecting..." for about 30 seconds and then fails with
+"device registration timed out", even though the backend eventually creates
+the device record and the microcontroller firmware appears online a few
+seconds later.
+The child repo directories are:
+- frontend=<paste pwd from child-repo-0>
+- backend=<paste pwd from child-repo-1>
+- firmware=<paste pwd from child-repo-2>
 ```
 
 ## Files
