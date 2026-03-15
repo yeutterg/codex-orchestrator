@@ -5,7 +5,7 @@ Coordinate cross-repo collaboration from one OpenAI Codex session.
 This is for work that spans separate repos and needs one orchestrator session to understand dependencies, plan the work, and coordinate execution across them.
 
 Typical cross-repo examples:
-- `backend` + device firmware + mobile app
+- `backend` + `device firmware` + `mobile app`
 - `backend` + `frontend` + `edge`
 
 In other words, this is not just "run Codex in one repo." It is for systems where multiple repos need to move together.
